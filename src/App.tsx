@@ -1,7 +1,11 @@
+import { Router } from "./Router"
+import { globalStyles } from "./view/styles/globalStyles";
+
 function App() {
+  globalStyles();
   return (
     <>
-      <h1>hello world</h1>
+    <Router />
     </>
   )
 }
