@@ -6,10 +6,10 @@ export const Container = styled('header', {
   marginBottom: 64,
 
   'img':{
-    marginBottom: 64
+    marginBottom: 32
   },
 
   'p': {
-    color: '#9CA3AF'
+    color: '$neutral400'
   }
 });

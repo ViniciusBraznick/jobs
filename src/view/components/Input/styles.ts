@@ -8,13 +8,13 @@ export const Fieldset = styled('fieldset', {
     width: '100%',
     height: 52,
     borderRadius: 4,
-    border: '1.5px solid #D1D5DB',
+    border: '1.5px solid $neutral300',
     fontSize: 16,
     padding: 12,
 
     '&:focus':{
-      outline: 'red',
-      borderColor: "red"
+      outline: '$neutral500',
+      borderColor: '$neutral500'
     },
 
     '&:not(:placeholder-shown), &:focus': {
@@ -31,9 +31,11 @@ export const Fieldset = styled('fieldset', {
 export const Label = styled('label', {
   position: 'absolute',
   left: 13,
-  fontSize: 16,
   top: 16,
+  fontSize: 16,
+  fontWeight: 300,
+  fontFamily: '$outfit',
   pointerEvents: 'none',
-  fontFamily: '$paragraph',
-  transition: 'all 100ms ease'
+  color: '$neutral400',
+  transition: 'all 100ms ease',
 })

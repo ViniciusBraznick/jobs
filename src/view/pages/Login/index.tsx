@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
 import { AuthHeader } from "../../components/AuthHeader";
+import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Container, Wrapper } from "./styles";
+
 
 export function Login() {
   return(
@@ -10,9 +13,11 @@ export function Login() {
           <AuthHeader.Title title="Acesse sua conta"/>
         </AuthHeader.Root>
         <form>
-          <Input type="text" name="name" placeholder="Nome"/>
-          <Input type="password" name="password" placeholder="Senha"/>
-          <button>Entrar</button>
+          <Input type="text" name="email" placeholder="E-mail" maxLength={52} autoComplete="off"/>
+          <Input type="password" name="password" placeholder="Senha" maxLength={32} autoComplete="off"/>
+
+          <Button type="submit">Entrar</Button>
+          <p>Não tem uma conta? <Link to='/user/register'>Cadastre-se agora</Link></p>
         </form>
       </Container>
     </Wrapper>

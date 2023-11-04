@@ -4,8 +4,8 @@ import { Aside, Container } from './styles';
 export function AuthLayout() {
   return (
     <Container>
-      <Aside />
       <Outlet />
+      <Aside />
     </Container>
     )
   }

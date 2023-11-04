@@ -6,13 +6,14 @@ export const globalStyles = globalCss({
     padding: 0,
     boxSizing: 'border-box',
   },
-  'input, textarea': {
-    fontFamily: '$paragraph'
-  },
-  'button':{
-    fontFamily:'$title'
+  'button, input, textarea': {
+    border: 0,
+    fontFamily: '$outfit',
   },
   'ul, ol': {
     listStyle: 'none',
   },
+  'p, a': {
+    fontFamily: '$outfit'
+  }
 });

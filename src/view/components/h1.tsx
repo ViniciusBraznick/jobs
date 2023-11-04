@@ -1,6 +1,6 @@
 import { styled } from "../styles/stitches.config";
 
 export const H1 = styled('h1', {
-  fontFamily: '$title',
+  fontFamily: '$kumbhSans',
   fontSize: 32,
 });
