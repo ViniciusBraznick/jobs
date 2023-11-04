@@ -11,7 +11,7 @@ export function Login() {
         </AuthHeader.Root>
         <form>
           <Input type="text" name="name" placeholder="Nome"/>
-          <Input type="text" name="password" placeholder="Senha"/>
+          <Input type="password" name="password" placeholder="Senha"/>
           <button>Entrar</button>
         </form>
       </Container>
