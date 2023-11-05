@@ -11,6 +11,7 @@ export function Login() {
       <Container>
         <AuthHeader.Root>
           <AuthHeader.Title title="Acesse sua conta"/>
+          <AuthHeader.Text text="Digite seu e-mail e senha"/>
         </AuthHeader.Root>
         <form>
           <Input type="text" name="email" placeholder="E-mail" maxLength={52} autoComplete="off"/>
