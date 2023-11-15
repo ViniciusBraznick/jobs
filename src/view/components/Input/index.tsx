@@ -11,6 +11,7 @@ export function Input({placeholder, name, id, ...props}: InputProps) {
       <Label htmlFor={inputID}>
         {placeholder}
       </Label>
+
     </Fieldset>
   )
 }

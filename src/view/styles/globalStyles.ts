@@ -15,5 +15,11 @@ export const globalStyles = globalCss({
   },
   'p, a': {
     fontFamily: '$outfit'
+  },
+  'a': {
+    color: '$blue500',
+    '&:hover': {
+      color: '$blue400'
+    }
   }
 });
