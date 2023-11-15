@@ -7,32 +7,42 @@ export const Fieldset = styled('fieldset', {
   'input': {
     width: '100%',
     height: 52,
-    borderRadius: 4,
+    borderRadius: '$borderRadius$1',
     border: '1.5px solid $neutral300',
-    fontSize: 16,
-    padding: 12,
+    fontSize: '$fontSize$base',
+    padding: '$spacing$3',
 
     '&:focus':{
       outline: '$neutral500',
       borderColor: '$neutral500'
     },
 
+    '&:disabled': {
+      backgroundColor: '$neutral200',
+      cursor: 'not-allowed',
+      borderColor: '$neutral200'
+    },
+
+    '&:disabled ~ label': {
+      color: '$neutral400',
+    },
+
     '&:not(:placeholder-shown), &:focus': {
-     paddingTop: 18
+     paddingTop: '$spacing$6'
     },
 
     '&:not(:placeholder-shown) ~ label, &:focus ~ label': {
-      top: 4,
-      fontSize: 12,
+      top: '$spacing$1',
+      fontSize: '$fontSize$sm',
     }
   }
 });
 
 export const Label = styled('label', {
   position: 'absolute',
-  left: 13,
-  top: 16,
-  fontSize: 16,
+  left: '$spacing$3',
+  top: '$spacing$5',
+  fontSize: '$fontSize$base',
   fontWeight: 300,
   fontFamily: '$outfit',
   pointerEvents: 'none',

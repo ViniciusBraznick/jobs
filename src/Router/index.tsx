@@ -11,13 +11,12 @@ export function Router() {
     <BrowserRouter>
       <Routes>
         <Route element={<Auth isPrivate={false} />}>
-          <Route element={<AuthLayout />}>
+          <Route element={<AuthLayout/>}>
             <Route path='/login' element={<Login />}/>
             <Route path='/user/register' element={<UserRegister />}/>
             <Route path='/company/register' element={<CompanyRegister />}/>
           </Route>
         </Route>
-
         <Route element={<Auth isPrivate={true} />}>
           <Route path='/' element={<Dashboard />}/>
         </Route>

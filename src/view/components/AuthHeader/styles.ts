@@ -3,10 +3,10 @@ import { styled } from "../../styles/stitches.config";
 export const Container = styled('header', {
   display: 'flex',
   flexDirection: 'column',
-  marginBottom: 64,
+  marginBottom: '$spacing$13',
 
   'img':{
-    marginBottom: 32
+    marginBottom: '$spacing$9'
   },
 
   'p': {
