@@ -49,3 +49,25 @@ export const Label = styled('label', {
   color: '$neutral400',
   transition: 'all 100ms ease',
 })
+
+export const ButtonIcon = styled('button', {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: '$spacing$2',
+  position: 'absolute',
+  top: '50%',
+  right: '$spacing$3',
+  marginTop: '0 !important',
+  borderRadius: '$borderRadius$2',
+  transform: 'translateY(-50%)',
+  cursor: "pointer",
+  backgroundColor: "transparent",
+  color: '$neutral400',
+
+  '&:hover': {
+    backgroundColor: '$neutral100',
+    color: '$neutral500'
+  }
+
+})
