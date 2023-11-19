@@ -1,5 +1,22 @@
 import { styled } from "../../styles/stitches.config";
 
+
+const errorVariant = {
+  'input': {
+    borderColor: '$red500',
+    color: '$red500',
+
+    '&:focus':{
+      outline: '$red500',
+      borderColor: '$red500'
+    }
+  },
+
+  'label': {
+    color: '$red500',
+  }
+}
+
 export const Fieldset = styled('fieldset', {
   position: 'relative',
   border: 0,
@@ -35,6 +52,23 @@ export const Fieldset = styled('fieldset', {
       top: '$spacing$1',
       fontSize: '$fontSize$sm',
     }
+  },
+
+  'small': {
+    display: "flex",
+    alignItems: "center",
+    gap: '$spacing$2',
+    marginTop: '$spacing$2',
+    color: '$red500',
+    fontFamily: '$kumbhSans',
+    fontSize: '$fontSize$sm',
+    fontWeight: 500,
+  },
+
+  variants: {
+    hasError: {
+      true: { ...errorVariant },
+    },
   }
 });
 
@@ -56,7 +90,7 @@ export const ButtonIcon = styled('button', {
   justifyContent: "center",
   padding: '$spacing$2',
   position: 'absolute',
-  top: '50%',
+  top: 26,
   right: '$spacing$3',
   marginTop: '0 !important',
   borderRadius: '$borderRadius$2',
@@ -69,5 +103,4 @@ export const ButtonIcon = styled('button', {
     backgroundColor: '$neutral100',
     color: '$neutral500'
   }
-
 })
