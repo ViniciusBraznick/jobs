@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
-import { ArrowRightIcon } from "@radix-ui/react-icons";
+import { ArrowRightIcon, ReloadIcon  } from "@radix-ui/react-icons";
+
 import {useRegisterController} from "./useRegisterController";
 
 interface linkDataProps {
@@ -23,16 +24,18 @@ const linkData: linkDataProps = {
 };
 
 export function Register() {
-  const { handleSubmit, register, errors, pathname } = useRegisterController();
+  const { handleSubmit, register, errors, pathname, isPending } = useRegisterController();
 
   return(
     <>
       <form onSubmit={handleSubmit}>
-        <Input {...register('nome')} error={errors.nome?.message} type="text" placeholder="Nome" maxLength={32} autoComplete="off"/>
+        <Input {...register('name')} error={errors.name?.message} type="text" placeholder="Nome" maxLength={32} autoComplete="off"/>
         <Input {...register('email')} error={errors.email?.message} type="text" placeholder="E-mail" autoComplete="off"/>
         <Input {...register('password')} error={errors.password?.message} type="password" placeholder="Senha" />
 
-        <Button fullWidth type="submit">Criar conta</Button>
+        <Button fullWidth type="submit" loading={isPending}>
+          {isPending ? <ReloadIcon/> : 'Criar conta'}
+        </Button>
         <p>Já tem uma conta? <Link to='/login'>Entrar</Link></p>
       </form>
 

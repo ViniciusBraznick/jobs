@@ -1,4 +1,10 @@
+import { keyframes } from "@stitches/react";
 import { styled } from "../styles/stitches.config";
+
+const spin = keyframes({
+  '0%': { transform: 'rotate(0)' },
+  '100%': { transform: 'rotate(1080deg)' },
+});
 
 const outlineVariants = {
   backgroundColor: 'transparent',
@@ -8,6 +14,12 @@ const outlineVariants = {
     backgroundColor: '$blue500',
     color: '$neutral50',
   }
+}
+
+const loadingVariants = {
+  color: '#FFF',
+  pointerEvents: 'none',
+  opacity: 0.5
 }
 
 const dangerVariants = {
@@ -31,6 +43,10 @@ export const Button = styled('button', {
   color: '#FFF',
   backgroundColor: '$blue500',
   transition: 'all 100ms linear',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 8,
 
   '&:hover': {
     backgroundColor: '$blue400',
@@ -46,6 +62,10 @@ export const Button = styled('button', {
     cursor: 'not-allowed',
   },
 
+  'svg': {
+    animation: `${spin} 2s ease-in-out infinite`,
+  },
+
   variants: {
     fullWidth: {
       true: {
@@ -55,9 +75,11 @@ export const Button = styled('button', {
     outline: {
       true: { ...outlineVariants },
     },
-
     danger: {
       true: { ...dangerVariants },
+    },
+    loading: {
+      true: {...loadingVariants}
     }
   }
 })

@@ -1,6 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod';
+import { useMutation } from '@tanstack/react-query';
+import { SigninParams } from '../../../app/services/signin';
+import { authService } from '../../../app/services';
+import { toast } from 'react-hot-toast';
 
 const schema = z.object({
   email: z.string().min(1, 'E-mail é obrigatório').email('Informe um e-mail válido'),
@@ -18,9 +22,19 @@ export function useLoginController() {
       resolver: zodResolver(schema)
   });
 
-  const handleSubmit = hookFormHandleSubmit((data) => {
-    console.log('Chama API com: ', data);
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: async (data:SigninParams) => {
+      return authService.signin(data);
+    },
   });
 
-  return { handleSubmit, register, errors };
+  const handleSubmit = hookFormHandleSubmit(async (data) => {
+    try {
+      await mutateAsync(data);
+    } catch {
+      toast.error("Hello World")
+    }
+  });
+
+  return { handleSubmit, register, errors, isPending };
 }
