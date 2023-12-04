@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod';
 import { useMutation } from '@tanstack/react-query';
-import { SigninParams } from '../../../app/services/signin';
-import { authService } from '../../../app/services';
+import { SigninParams } from '../../../app/services/authService/signin';
+import { authService } from '../../../app/services/authService';
 import { toast } from 'react-hot-toast';
 
 const schema = z.object({
@@ -32,7 +32,7 @@ export function useLoginController() {
     try {
       await mutateAsync(data);
     } catch {
-      toast.error("Hello World")
+      toast.error("Email ou senha inválido")
     }
   });
 
