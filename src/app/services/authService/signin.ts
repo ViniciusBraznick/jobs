@@ -1,4 +1,3 @@
-import { sleep } from "../../utils/sleep";
 import { httpClient } from "../httpClient";
 
 export interface SigninParams {
@@ -6,14 +5,15 @@ export interface SigninParams {
   password: string;
 }
 
-interface SigninReponse {
+interface SigninResponse {
+  email: string;
   token: string;
+  type: string;
+  expireIn: number;
 }
 
 export async function signin(params: SigninParams) {
-  await sleep();
+  const { data } = await httpClient.post<SigninResponse>('/auth/login', params);
 
-  const { data } = await httpClient.post<SigninReponse>('/auth/login', params);
-
-  return { data };
+  return data;
 }

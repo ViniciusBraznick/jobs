@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import { Aside, Container, Wrapper, ContainerForm } from './styles';
+import { Container, Wrapper, ContainerForm } from './styles';
 import { AuthHeader } from '../../components/AuthHeader';
 
 interface routesTitle {
@@ -36,7 +36,6 @@ export function AuthLayout() {
           <Outlet />
         </ContainerForm>
       </Wrapper>
-      <Aside />
     </Container>
     )
   }

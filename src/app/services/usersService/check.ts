@@ -4,6 +4,7 @@ interface CheckAuthReponse {
   token: string;
 }
 
+
 export async function checkAuth() {
   const { data } = await httpClient.get<CheckAuthReponse>('/auth/check');
 

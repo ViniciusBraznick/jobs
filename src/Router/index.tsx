@@ -1,7 +1,7 @@
 import { Routes, Route,  BrowserRouter} from 'react-router-dom';
 import { Auth } from './Auth';
 import { Login } from '../view/pages/Login';
-import { Register } from '../view/pages/UserRegister';
+import { Register } from '../view/pages/Register';
 import { Dashboard } from '../view/pages/Dashboard';
 import { AuthLayout } from '../view/layouts/Auth';
 

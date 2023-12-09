@@ -5,6 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { SigninParams } from '../../../app/services/authService/signin';
 import { authService } from '../../../app/services/authService';
 import { toast } from 'react-hot-toast';
+import { useAuth } from '../../../app/hooks/useAuth';
 
 const schema = z.object({
   email: z.string().min(1, 'E-mail é obrigatório').email('Informe um e-mail válido'),
@@ -28,11 +29,14 @@ export function useLoginController() {
     },
   });
 
+  const { signin } = useAuth();
+
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     try {
-      await mutateAsync(data);
+      const { token } = await mutateAsync(data);
+      signin(token);
     } catch {
-      toast.error("Email ou senha inválido")
+      toast.error("Usuário ou senha incorreto")
     }
   });
 

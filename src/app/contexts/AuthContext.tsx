@@ -1,9 +1,12 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import { localStorageKeys } from "../config/localStorageKeys";
+import { usersService } from "../services/usersService";
+import { useQuery } from "@tanstack/react-query";
+import { LauchScreen } from "../../view/components/LauchScreen/LauchScreen";
 
 interface AuthContextValue {
   signedIn: boolean;
-  signin(token: string): void;
+  signin(accessToken: string): void;
   signout(): void;
 }
 
@@ -16,8 +19,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return !!storedAccessToken;
   });
 
-  const signin = useCallback((token: string) => {
-    localStorage.setItem(localStorageKeys.ACCESS_TOKEN, token);
+  const { isError, isFetching, isSuccess } = useQuery({
+    queryKey: ['auth', 'check'],
+    queryFn: () => usersService.checkAuth(),
+    staleTime: 3600,
+    enabled: signedIn,
+  });
+
+
+  const signin = useCallback((accessToken: string) => {
+    localStorage.setItem(localStorageKeys.ACCESS_TOKEN, accessToken);
     setSignedIn(true);
   }, []);
 
@@ -26,9 +37,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setSignedIn(false);
   }, []);
 
+
+  useEffect(() => {
+    if(isError){
+      signout()
+    }
+  },[isError, signout]);
+
   return(
-    <AuthContext.Provider value={{signedIn, signin, signout}}>
-      {children}
+    <AuthContext.Provider
+      value={{
+        signedIn: isSuccess && signedIn,
+        signin,
+        signout
+      }}
+    >
+      <LauchScreen isLoading={isFetching} />
+      {!isFetching && children}
     </AuthContext.Provider>
   );
 }

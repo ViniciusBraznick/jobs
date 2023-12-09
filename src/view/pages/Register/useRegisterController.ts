@@ -38,7 +38,6 @@ export function useRegisterController() {
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     try {
       const { accessToken } = await mutateAsync(data);
-
       signin(accessToken);
     } catch {
       toast.error('Ocorreu um erro ao criar sua conta', {
