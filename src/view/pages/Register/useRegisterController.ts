@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { redirect, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -7,13 +7,11 @@ import { useMutation } from '@tanstack/react-query';
 
 import { authService } from '../../../app/services/authService';
 import { SignupParams } from '../../../app/services/authService/signup';
-import { useAuth } from '../../../app/hooks/useAuth';
 
 const schema = z.object({
   name: z.string().min(1, 'Nome é obrigatório').max(32, 'o nome deve conter no máximo 32 caracteres'),
   email: z.string().min(1, 'E-mail é obrigatório').email('Informe um e-mail válido'),
   password: z.string().min(8, 'Senha deve conter pelo menos 8 dígitos'),
-  userType: z.string(),
 })
 
 type formData = z.infer<typeof schema>;
@@ -35,18 +33,14 @@ export function useRegisterController() {
     },
   });
 
-  const { signin } = useAuth();
-
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     try {
-      const { accessToken } = await mutateAsync(data);
-      signin(accessToken);
+      await mutateAsync({...data, isCadidate: pathname === '/user/register'});
+      toast.success('Conta criada com sucesso');
+
+      redirect("/login");
     } catch {
-      toast.error('Ocorreu um erro ao criar sua conta', {
-        style: {
-          fontFamily: 'var(--fonts-outfit)'
-        },
-      })
+      toast.error('Ocorreu um erro ao criar sua conta')
     }
   });
 

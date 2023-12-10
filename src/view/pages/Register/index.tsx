@@ -26,7 +26,7 @@ const linkData: linkDataProps = {
 export function Register() {
   const { handleSubmit, register, errors, pathname, isPending } = useRegisterController();
 
-  const { type: userType, route} = linkData[pathname];
+  const { type, route,} = linkData[pathname];
 
   return(
     <>
@@ -34,7 +34,6 @@ export function Register() {
         <Input {...register('name')} error={errors.name?.message} type="text" placeholder="Nome" maxLength={32} autoComplete="off"/>
         <Input {...register('email')} error={errors.email?.message} type="text" placeholder="E-mail" autoComplete="off"/>
         <Input {...register('password')} error={errors.password?.message} type="password" placeholder="Senha" />
-        <input {...register('userType')} type="hidden" value={userType} />
 
         <Button fullWidth type="submit" loading={isPending}>
           {isPending ? <ReloadIcon/> : 'Criar conta'}
@@ -42,8 +41,8 @@ export function Register() {
         <p>Já tem uma conta? <Link to='/login'>Entrar</Link></p>
       </form>
 
-      <Link className="change-register" title={`Cadastre-se como ${userType}`} to={`${route}/register`}>
-        {`Sou ${userType}`}
+      <Link className="change-register" title={`Cadastre-se como ${type}`} to={`${route}/register`}>
+        {`Sou ${type}`}
         <ArrowRightIcon />
       </Link>
     </>

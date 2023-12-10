@@ -4,7 +4,7 @@ export interface SignupParams {
   name: string;
   email: string;
   password: string;
-  userType: string;
+  isCadidate: boolean;
 }
 
 interface SignupResponse {
@@ -12,7 +12,7 @@ interface SignupResponse {
 }
 
 export async function signup(params: SignupParams) {
-  const route = params.userType === 'empresa' ? '/auth/company/signup' : '/auth/candidate/signup';
+  const route = params.isCadidate ? '/auth/candidate/signup' : '/auth/company/signup';
 
   const { data } = await httpClient.post<SignupResponse>(route, params);
 
