@@ -12,7 +12,9 @@ interface SignupResponse {
 }
 
 export async function signup(params: SignupParams) {
-  const { data } = await httpClient.post<SignupResponse>('/auth/company/signup', params);
+  const route = params.userType === 'empresa' ? '/auth/company/signup' : '/auth/candidate/signup';
+
+  const { data } = await httpClient.post<SignupResponse>(route, params);
 
   return data;
 }
