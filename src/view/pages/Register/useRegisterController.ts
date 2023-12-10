@@ -1,4 +1,4 @@
-import { redirect, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -25,6 +25,8 @@ export function useRegisterController() {
     resolver: zodResolver(schema)
   });
 
+  const navigate = useNavigate();
+
   const { pathname } = useLocation();
 
   const { mutateAsync, isPending } = useMutation({
@@ -38,7 +40,8 @@ export function useRegisterController() {
       await mutateAsync({...data, isCadidate: pathname === '/user/register'});
       toast.success('Conta criada com sucesso');
 
-      redirect("/login");
+      navigate("/")
+
     } catch {
       toast.error('Ocorreu um erro ao criar sua conta')
     }
