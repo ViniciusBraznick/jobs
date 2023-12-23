@@ -16,7 +16,7 @@ export function AuthLayout() {
       title: 'Acesse sua conta',
       text: 'Digite seu e-mail e senha'
     },
-    '/user/register': {
+    '/candidate/register': {
       title: 'Cadastre-se como candidato',
       text: 'Encontre a oportunidade perfeita para você'
     },
