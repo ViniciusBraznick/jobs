@@ -13,18 +13,18 @@ interface linkDataProps {
 }
 
 const linkData: linkDataProps = {
-  '/user/register':  {
+  '/candidate/register':  {
     type: 'empresa',
     route: '/company',
   },
   '/company/register': {
     type: 'candidato',
-    route: '/user',
+    route: '/candidate',
   }
 };
 
 export function Register() {
-  const { handleSubmit, register, errors, pathname, isPending } = useRegisterController();
+  const { handleSubmit, register, errors, pathname, isLoading } = useRegisterController();
 
   const { type, route,} = linkData[pathname];
 
@@ -35,8 +35,8 @@ export function Register() {
         <Input {...register('email')} error={errors.email?.message} type="text" placeholder="E-mail" autoComplete="off"/>
         <Input {...register('password')} error={errors.password?.message} type="password" placeholder="Senha" />
 
-        <Button fullWidth type="submit" loading={isPending}>
-          {isPending ? <ReloadIcon/> : 'Criar conta'}
+        <Button fullWidth type="submit" loading={isLoading}>
+          {isLoading ? <ReloadIcon/> : 'Criar conta'}
         </Button>
         <p>Já tem uma conta? <Link to='/login'>Entrar</Link></p>
       </form>

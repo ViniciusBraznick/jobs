@@ -3,11 +3,13 @@ import { localStorageKeys } from "../config/localStorageKeys";
 import { usersService } from "../services/usersService";
 import { useQuery } from "@tanstack/react-query";
 import { LauchScreen } from "../../view/components/LauchScreen/LauchScreen";
+import { User } from "../entities/User";
 
 interface AuthContextValue {
   signedIn: boolean;
   signin(accessToken: string): void;
   signout(): void;
+  user: User | undefined;
 }
 
 export const AuthContext = createContext({} as AuthContextValue);
@@ -19,13 +21,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return !!storedAccessToken;
   });
 
-  const { isError, isFetching, isSuccess } = useQuery({
+  const { isError, isFetching, isSuccess, remove, data } = useQuery({
     queryKey: ['auth', 'check'],
     queryFn: () => usersService.checkAuth(),
     staleTime: 3600,
     enabled: signedIn,
   });
-
 
   const signin = useCallback((accessToken: string) => {
     localStorage.setItem(localStorageKeys.ACCESS_TOKEN, accessToken);
@@ -34,9 +35,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signout = useCallback(() => {
     localStorage.removeItem(localStorageKeys.ACCESS_TOKEN);
-    setSignedIn(false);
-  }, []);
+    remove();
 
+    setSignedIn(false);
+  }, [remove]);
 
   useEffect(() => {
     if(isError){
@@ -49,10 +51,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       value={{
         signedIn: isSuccess && signedIn,
         signin,
-        signout
+        signout,
+        user: data
       }}
     >
-      <LauchScreen isLoading={isFetching} />
+    <LauchScreen isLoading={isFetching} />
       {!isFetching && children}
     </AuthContext.Provider>
   );

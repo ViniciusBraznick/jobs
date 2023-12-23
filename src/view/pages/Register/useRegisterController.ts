@@ -29,7 +29,7 @@ export function useRegisterController() {
 
   const { pathname } = useLocation();
 
-  const { mutateAsync, isPending } = useMutation({
+  const { mutateAsync, isLoading } = useMutation({
     mutationFn: async (data:SignupParams) => {
       return authService.signup(data);
     },
@@ -37,15 +37,13 @@ export function useRegisterController() {
 
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     try {
-      await mutateAsync({...data, isCadidate: pathname === '/user/register'});
+      await mutateAsync({...data, isCadidate: pathname === '/candidate/register'});
       toast.success('Conta criada com sucesso');
-
       navigate("/")
-
     } catch {
       toast.error('Ocorreu um erro ao criar sua conta')
     }
   });
 
-  return { handleSubmit, register, errors, pathname, isPending };
+  return { handleSubmit, register, errors, pathname, isLoading };
 }

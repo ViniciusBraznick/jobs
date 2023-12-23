@@ -12,12 +12,17 @@ export function Router() {
         <Route element={<Auth isPrivate={false} />}>
           <Route element={<AuthLayout/>}>
             <Route path='/login' element={<Login />}/>
-            <Route path='/user/register' element={<Register />}/>
+            <Route path='/candidate/register' element={<Register />}/>
             <Route path='/company/register' element={<Register />}/>
           </Route>
         </Route>
-        <Route element={<Auth isPrivate={true} />}>
-          <Route path='/' element={<Dashboard />}/>
+
+        <Route element={<Auth isPrivate={true} userAllowed='candidate'/>}>
+          <Route path='/candidate/dashboard' element={<Dashboard />}/>
+        </Route>
+
+        <Route element={<Auth isPrivate={true} userAllowed='company' />}>
+          <Route path='/company/dashboard' element={<Dashboard />}/>
         </Route>
       </Routes>
     </BrowserRouter>
