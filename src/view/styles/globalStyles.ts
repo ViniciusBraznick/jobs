@@ -6,6 +6,9 @@ export const globalStyles = globalCss({
     padding: 0,
     boxSizing: 'border-box',
   },
+  'body': {
+    fontFamily: '$kumbhSans'
+  },
   'button, input, textarea': {
     border: 0,
     fontFamily: '$outfit',
