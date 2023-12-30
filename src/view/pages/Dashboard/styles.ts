@@ -6,11 +6,11 @@ export const Container = styled('aside', {
   padding: 16,
   background: '#FFF',
 
-  'ul': {
+  '.teste': {
     marginTop: '$spacing$13'
   },
 
-  'li + li': {
+  '.teste > li + li': {
     marginTop: 16
   },
 
@@ -29,5 +29,35 @@ export const Container = styled('aside', {
     alignItems: 'center',
     justifyContent: 'center',
     cursor: 'pointer'
+  },
+
+  '.sub-category': {
+    marginLeft: 20,
+    position: 'relative',
+
+    '&:before': {
+      content: '',
+      height: 'calc(100% - 18px)',
+      width: 2,
+      backgroundColor: '#000',
+      display: 'block',
+      position: 'absolute',
+      left: 0
+    },
+
+    'li': {
+      position: 'relative',
+      marginLeft: 10,
+
+      '&:before': {
+        content: '',
+        height: 2,
+        width: 10,
+        backgroundColor: '#000',
+        display: 'block',
+        position: 'absolute',
+        left: -10
+      }
+    }
   }
 })

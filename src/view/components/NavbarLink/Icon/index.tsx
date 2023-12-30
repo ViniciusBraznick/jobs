@@ -7,7 +7,7 @@ interface Prop {
 
 export default function Icon({children}: Prop) {
   return (
-   <Container>
+   <Container as={'button'}>
       {children}
    </Container>
   )

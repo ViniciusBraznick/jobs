@@ -10,6 +10,9 @@ export const globalStyles = globalCss({
     fontFamily: '$kumbhSans',
     backgroundColor: '$neutral50'
   },
+  'button': {
+    cursor:'pointer'
+  },
   'button, input, textarea': {
     border: 0,
     fontFamily: '$outfit',

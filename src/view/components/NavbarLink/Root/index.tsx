@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Container } from "./styles";
 
 interface Props{
-  children: ReactNode
+  children: ReactNode,
 }
 
 export default function Root({children}: Props) {
