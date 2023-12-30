@@ -7,7 +7,8 @@ export const globalStyles = globalCss({
     boxSizing: 'border-box',
   },
   'body': {
-    fontFamily: '$kumbhSans'
+    fontFamily: '$kumbhSans',
+    backgroundColor: '$neutral50'
   },
   'button, input, textarea': {
     border: 0,

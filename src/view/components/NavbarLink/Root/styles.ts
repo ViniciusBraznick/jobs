@@ -5,6 +5,7 @@ export const Container = styled('li', {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+  transition: 'background-color 500ms',
 
   '&:hover': {
     backgroundColor: '$neutral100'

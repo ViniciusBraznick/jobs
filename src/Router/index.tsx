@@ -21,7 +21,7 @@ export function Router() {
           <Route path='/candidate/dashboard' element={<Dashboard />}/>
         </Route>
 
-        <Route element={<Auth isPrivate={true} userAllowed='company' />}>
+        <Route element={<Auth isPrivate={false} />}>
           <Route path='/company/dashboard' element={<Dashboard />}/>
         </Route>
       </Routes>
