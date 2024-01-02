@@ -1,18 +1,26 @@
 import { styled } from "../../styles/stitches.config";
 
+const visibleState = {
+  width: '80px',
+
+  'header button': {
+    right: '-80%',
+  },
+
+  'header button svg': {
+    transform: 'rotate(180deg)',
+  }
+}
+
 export const Container = styled('aside', {
   minHeight: '100vh',
+  width: '280px',
+  height: '100vh',
+  minWidth: 80,
   maxWidth: 280,
   padding: 16,
   background: '#FFF',
-
-  '.teste': {
-    marginTop: '$spacing$13'
-  },
-
-  '.teste > li + li': {
-    marginTop: 16
-  },
+  transition: 'width 100ms',
 
   'header': {
     position: "relative"
@@ -28,36 +36,15 @@ export const Container = styled('aside', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    borderRadius: '50px',
+    overflow: 'hidden',
+    border: '4px solid $neutral100',
   },
 
-  '.sub-category': {
-    marginLeft: 20,
-    position: 'relative',
-
-    '&:before': {
-      content: '',
-      height: 'calc(100% - 18px)',
-      width: 2,
-      backgroundColor: '#000',
-      display: 'block',
-      position: 'absolute',
-      left: 0
+  variants: {
+    visible: {
+      false: { ...visibleState },
     },
-
-    'li': {
-      position: 'relative',
-      marginLeft: 10,
-
-      '&:before': {
-        content: '',
-        height: 2,
-        width: 10,
-        backgroundColor: '#000',
-        display: 'block',
-        position: 'absolute',
-        left: -10
-      }
-    }
   }
 })
