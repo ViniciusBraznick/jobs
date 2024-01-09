@@ -1,7 +1,7 @@
 import { iconsMap } from "./iconsMap";
 
 interface CategoryIconProps {
-  type: 'company' | 'candidate';
+  type: "company" | "candidate";
   category?: string;
 }
 

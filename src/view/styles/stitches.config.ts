@@ -50,6 +50,7 @@ createStitches({
     },
     fontSize: {
       sm: '0.75rem',
+      '2sm': '0.875rem',
       base: '1rem',
       md: '1.5rem',
       xl: '1.75rem',

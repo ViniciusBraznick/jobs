@@ -12,7 +12,7 @@ const hiddenState = {
   }
 }
 
-export const Container = styled('aside', {
+export const Aside = styled('aside', {
   minHeight: '100vh',
   width: '280px',
   height: '100vh',
@@ -47,4 +47,36 @@ export const Container = styled('aside', {
       false: { ...hiddenState },
     },
   }
+})
+
+export const Container = styled('main', {
+  marginTop: '$spacing$13',
+  height: '85%',
+  overflowY: "scroll",
+  container: 'sidebar / inline-size',
+
+  '@container sidebar (width < 200px)': {
+    'div span:last-child': {
+      display: 'none'
+    },
+
+    'div div, a': {
+      justifyContent: 'center'
+    },
+  },
+
+  '&::-webkit-scrollbar':{
+    width: 4,
+    backgroundColor: 'transparent',
+  },
+
+  '&::-webkit-scrollbar-thumb': {
+    backgroundColor: '$neutral100',
+    visibility: "hidden",
+    borderRadius: 10,
+  },
+
+  '&:hover::-webkit-scrollbar-thumb':{
+    visibility: "visible"
+  },
 })
