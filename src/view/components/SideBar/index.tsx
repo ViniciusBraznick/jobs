@@ -25,15 +25,9 @@ const links = [
   {
     id: 3,
     name: 'Chat',
-    path: '',
+    path: '/chat',
     icon_category: 'chat',
-    sub_category: [
-      { id: 2, name: 'Currículo', path: '/candidate/curriculum'},
-      { id: 3, name: 'Segurança', path: '/candidate/security'},
-      { id: 4, name: 'Dados da Conta', path: '/candidate/data'},
-      { id: 5, name: 'Privacidade', path: '/candidate/privacy'},
-    ],
-    badge: 4,
+    sub_category: [],
   },
   {
     id: 4,
@@ -106,6 +100,7 @@ export default function SiderBar() {
                       path={subCategory.path}
                       isActive={pathname === subCategory.path}
                       key={subCategory.id}
+                      isSubCategory={true}
                     >
                       {subCategory.name}
                     </SidebarItem.Root>

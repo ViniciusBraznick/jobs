@@ -1,5 +1,6 @@
 import { styled } from "../../../../styles/stitches.config";
 
+
 const active = {
   backgroundColor: '$blue500',
   color: '$neutral100 !important',
@@ -12,6 +13,17 @@ const active = {
     backgroundColor: 'transparent',
     color: '$neutral100',
   },
+}
+
+const subCategoryActive = {
+  backgroundColor: 'transparent',
+  color: '$neutral900 !important',
+  fontWeight: "bold",
+
+  '&:hover': {
+    backgroundColor: 'transparent'
+  },
+
 }
 
 export const Container = styled('div', {
@@ -30,6 +42,9 @@ export const Container = styled('div', {
   variants: {
     isActive: {
       true: { ...active }
+    },
+    isSubCategory: {
+      true: {...subCategoryActive}
     },
   }
 });
