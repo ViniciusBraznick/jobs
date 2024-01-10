@@ -5,50 +5,8 @@ import { CategoryIcon } from "../Icons/categories/CategoryIcon";
 import { useSidebarController } from "./useSideBarController";
 import DoubleArrow from "../../components/Icons/DoubleChevron";
 
-import logo from '../../../assets/images/logo.svg'
-
-const links = [
-  {
-    id: 1,
-    name: 'Dashboard',
-    path: '/company/dashboard',
-    icon_category: 'dashboard',
-    sub_category: [],
-  },
-  {
-    id: 2,
-    name: 'Candidaturas',
-    path: '/company/applications',
-    icon_category: 'backpack',
-    sub_category: []
-  },
-  {
-    id: 3,
-    name: 'Chat',
-    path: '/chat',
-    icon_category: 'chat',
-    sub_category: [],
-  },
-  {
-    id: 4,
-    name: 'Minha Conta',
-    path: '',
-    icon_category: 'account',
-    sub_category: [
-      { id: 2, name: 'Currículo', path: '/company/curriculum'},
-      { id: 3, name: 'Segurança', path: '/company/security'},
-      { id: 4, name: 'Dados da Conta', path: '/company/data'},
-      { id: 5, name: 'Privacidade', path: '/company/privacy'},
-    ],
-  },
-  {
-    id: 5,
-    name: 'Preferências',
-    path: '/company/preferences',
-    icon_category: 'preferences',
-    sub_category: [],
-  },
-];
+import logo from '../../../assets/images/logo.svg';
+import { Categories } from "./categories";
 
 export default function SiderBar() {
   const { handleShowSubCategory,
@@ -59,6 +17,8 @@ export default function SiderBar() {
           idCategoryActive,
           user } = useSidebarController();
 
+  const userType  = user?.isCompany ? 'company' : 'candidate';
+
   return (
     <Aside visible={isVisible}>
       <header>
@@ -68,7 +28,7 @@ export default function SiderBar() {
           </button>
       </header>
       <Container>
-        {links.map((item) => {
+        {Categories[userType].map((item) => {
           return(
             <SidebarItem.Wrapper key={item.id}>
               <SidebarItem.Root
