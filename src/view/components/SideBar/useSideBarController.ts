@@ -10,40 +10,39 @@ interface Prop {
 
 export function useSidebarController(){
   const { pathname } = useLocation();
-  const [isVisible, seIsVisible] = useState(true);
-  const [showSubCategory, setShowSubCategory] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [idCategoryActive, setIdCategoryActive] = useState(0);
   const { user } = useAuth();
-
-  function handleSetCategoryActive() {
-    setShowSubCategory(false);
-  }
 
   function verifyCategoryIsActive(subcategory:Prop) {
     return subcategory.path === pathname;
   }
 
-  function handleShowSubCategory(){
-    if(isVisible){
-      setShowSubCategory(!showSubCategory);
-      return;
+  function handleShowSubCategory(id: number){
+    if(id === idCategoryActive && isVisible){
+      setIdCategoryActive(0)
+      return
     }
 
-    handleToggleVisibility();
-    setShowSubCategory(true);
+    if(!isVisible){
+      setIsVisible(true);
+    }
+
+    setIdCategoryActive(id);
+    // handleToggleVisibility();
   }
 
   function handleToggleVisibility() {
-    seIsVisible(!isVisible);
+    setIsVisible(!isVisible);
   }
 
   return {
-    handleSetCategoryActive,
     handleShowSubCategory,
     handleToggleVisibility,
     verifyCategoryIsActive,
     isVisible,
     pathname,
-    showSubCategory,
-    user
+    user,
+    idCategoryActive
   }
 }

@@ -13,6 +13,7 @@ export function Router() {
         <Route element={<Auth isPrivate={false} />}>
           <Route element={<AuthLayout/>}>
             <Route path='/login' element={<Login />}/>
+            <Route path='/' element={<Login />}/>
             <Route path='/candidate/register' element={<Register />}/>
             <Route path='/company/register' element={<Register />}/>
           </Route>

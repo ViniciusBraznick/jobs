@@ -6,8 +6,12 @@ import MixerVertical from "../MixerVertical";
 
 export const iconsMap = {
   company: {
-    default: Person,
-    teste: Backpack,
+    default: SquareIcon,
+    dashboard: DashboardIcon,
+    account: Person,
+    backpack: Backpack,
+    chat: PaperPlane,
+    preferences: MixerVertical
   },
   candidate: {
     default: SquareIcon,

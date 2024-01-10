@@ -25,10 +25,15 @@ const links = [
   {
     id: 3,
     name: 'Chat',
-    path: '/chat',
+    path: '',
     icon_category: 'chat',
+    sub_category: [
+      { id: 2, name: 'Currículo', path: '/candidate/curriculum'},
+      { id: 3, name: 'Segurança', path: '/candidate/security'},
+      { id: 4, name: 'Dados da Conta', path: '/candidate/data'},
+      { id: 5, name: 'Privacidade', path: '/candidate/privacy'},
+    ],
     badge: 4,
-    sub_category: [],
   },
   {
     id: 4,
@@ -52,13 +57,12 @@ const links = [
 ];
 
 export default function SiderBar() {
-  const { handleSetCategoryActive,
-          handleShowSubCategory,
+  const { handleShowSubCategory,
           handleToggleVisibility,
           verifyCategoryIsActive,
           isVisible,
           pathname,
-          showSubCategory,
+          idCategoryActive,
           user } = useSidebarController();
 
   return (
@@ -76,7 +80,7 @@ export default function SiderBar() {
               <SidebarItem.Root
                 path={item.path}
                 isActive={item.path === pathname || Boolean(item.sub_category.length > 0 && item.sub_category.find(verifyCategoryIsActive))}
-                setItemActive={() => { item.sub_category.length > 0 ? handleShowSubCategory() : handleSetCategoryActive()}}
+                setItemActive={() => { handleShowSubCategory(item.id) }}
               >
                 <SidebarItem.Container>
                   <SidebarItem.Icon>
@@ -95,7 +99,7 @@ export default function SiderBar() {
               {item.sub_category.length > 0 &&
                 <SidebarItem.SubCategory
                   itemsToShow={item.sub_category.length}
-                  toShow={showSubCategory}
+                  toShow={item.id === idCategoryActive || (item.id === idCategoryActive && Boolean(item.sub_category.find(verifyCategoryIsActive) ))}
                 >
                   {item.sub_category.map((subCategory) => (
                     <SidebarItem.Root

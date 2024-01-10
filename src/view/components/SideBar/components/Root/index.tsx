@@ -5,7 +5,7 @@ import { Composition } from "../../entities/Composition";
 
 interface RootState extends Composition {
   isActive?: boolean | undefined,
-  setItemActive?: (itemName: string) => void,
+  setItemActive: (itemName: string) => void,
   path: string | null,
 }
 
