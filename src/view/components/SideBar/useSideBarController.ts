@@ -18,18 +18,17 @@ export function useSidebarController(){
     return subcategory.path === pathname;
   }
 
-  function handleShowSubCategory(id: number){
+  function handleShowSubCategory(id: number, hasSubCategory: boolean){
     if(id === idCategoryActive && isVisible){
       setIdCategoryActive(0)
       return
     }
 
-    if(!isVisible){
+    if(!isVisible && hasSubCategory){
       setIsVisible(true);
     }
 
     setIdCategoryActive(id);
-    // handleToggleVisibility();
   }
 
   function handleToggleVisibility() {
