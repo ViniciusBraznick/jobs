@@ -36,7 +36,9 @@ export function useLoginController() {
       const { token } = await mutateAsync(data);
       signin(token);
     } catch {
-      toast.error("Usuário ou senha incorreto")
+      toast.error("Usuário ou senha incorreto", {
+        id: 'login'
+      })
     }
   });
 
