@@ -1,24 +1,31 @@
 import { Link } from "react-router-dom";
-
 import { Container } from "./styles";
 import { Composition } from "../../entities/Composition";
 
 interface RootState extends Composition {
-  isActive?: boolean | undefined,
-  setItemActive?: (itemName: string) => void,
-  path: string | null,
-  isSubCategory?: boolean,
+  isActive?: boolean | undefined;
+  setItemActive?: (itemName: string) => void;
+  path: string | null;
+  isSubCategory?: boolean;
+  onClick?: () => void;
 }
 
-export default function Root({children, isActive, setItemActive, path, isSubCategory}: RootState) {
+export default function Root({
+  children,
+  isActive,
+  onClick,
+  path,
+  isSubCategory,
+}: RootState) {
   return (
     <Container
-      to={path}
-      as={path !== '' && Link}
+      to={path || '/'}
+      as={path !== '' ? Link : undefined}
       isActive={isActive}
       isSubCategory={isSubCategory && isActive}
-      onClick={setItemActive}>
+      onClick={onClick}
+    >
       {children}
     </Container>
-  )
+  );
 }

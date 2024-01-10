@@ -74,7 +74,7 @@ export default function SiderBar() {
               <SidebarItem.Root
                 path={item.path}
                 isActive={item.path === pathname || Boolean(item.sub_category.length > 0 && item.sub_category.find(verifyCategoryIsActive))}
-                setItemActive={() => { handleShowSubCategory(item.id, item.sub_category.length > 0) }}
+                onClick={() => { handleShowSubCategory(item.id, item.sub_category.length > 0) }}
               >
                 <SidebarItem.Container>
                   <SidebarItem.Icon>
