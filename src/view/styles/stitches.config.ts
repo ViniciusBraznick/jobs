@@ -33,6 +33,7 @@ createStitches({
       // Neutral
       neutral50: '#fafafa',
       neutral100: '#f5f5f5',
+      neutral150: '#f3f3f3',
       neutral200: '#e5e5e5',
       neutral300: '#d4d4d4',
       neutral400: '#a3a3a3',
@@ -81,6 +82,7 @@ createStitches({
       3: '0.75rem', //12px
       4: '1rem', //16px
       6: '1.5rem', //24px
+      100: '100%',
     },
 
   },
