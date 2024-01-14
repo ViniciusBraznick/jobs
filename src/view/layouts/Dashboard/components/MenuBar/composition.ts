@@ -3,7 +3,6 @@ import * as Menubar from '@radix-ui/react-menubar';
 
 const Root = styled(Menubar.Root, {
   backgroundColor: 'transparent',
-  outline: '$neutral150',
 })
 
 const MenuContainer = styled(Menubar.Menu, {
@@ -12,7 +11,6 @@ const MenuContainer = styled(Menubar.Menu, {
 
 const Trigger = styled(Menubar.Trigger, {
   backgroundColor: 'transparent',
-  outline: '$neutral150',
 })
 
 const Portal = styled(Menubar.Portal, {
@@ -31,15 +29,25 @@ const Content = styled(Menubar.Content, {
   marginRight: '32px',
 })
 
+const Divider = styled('span', {
+  height: '1px',
+  width: '90%',
+  margin: '0 auto',
+  background: '$neutral150',
+  display: "block",
+})
+
 const Item = styled(Menubar.Item, {
   backgroundColor: 'transparent',
   padding: '$spacing$2 $spacing$5',
-  color: '$neutral600',
+  color: '$neutral900',
   cursor: "pointer",
   display: 'flex',
   alignItems: "center",
   justifyContent: "flex-start",
   gap: '$spacing$1',
+  fontFamily: '$outfit',
+  fontSize: '14px',
 
   '&:hover': {
     color: '$neutral950',
@@ -66,4 +74,5 @@ export const Menu = {
   Portal,
   Content,
   Item,
+  Divider
 };

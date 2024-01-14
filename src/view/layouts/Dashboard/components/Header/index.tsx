@@ -6,7 +6,9 @@ import Menu from "../MenuBar";
 export default function Header() {
   return (
   <Container>
-    <MagnifyingGlassIcon />
+    <Icon>
+      <MagnifyingGlassIcon />
+    </Icon>
     <Actions>
       <Icon>
         <BellIcon />
