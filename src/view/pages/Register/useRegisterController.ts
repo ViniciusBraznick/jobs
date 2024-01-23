@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -7,6 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import { authService } from '../../../app/services/authService';
 import { SignupParams } from '../../../app/services/authService/signup';
+import { useAuth } from '../../../app/hooks/useAuth';
 
 const schema = z.object({
   name: z.string().min(1, 'Nome é obrigatório').max(32, 'o nome deve conter no máximo 32 caracteres'),
@@ -25,8 +26,6 @@ export function useRegisterController() {
     resolver: zodResolver(schema)
   });
 
-  const navigate = useNavigate();
-
   const { pathname } = useLocation();
 
   const { mutateAsync, isLoading } = useMutation({
@@ -35,11 +34,12 @@ export function useRegisterController() {
     },
   });
 
+  const { signin } = useAuth()
+
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     try {
-      await mutateAsync({...data, isCadidate: pathname === '/candidate/register'});
-      toast.success('Conta criada com sucesso');
-      navigate("/")
+      const { token } = await mutateAsync({...data, isCadidate: pathname === '/candidate/register'});
+      signin(token);
     } catch {
       toast.error('Ocorreu um erro ao criar sua conta')
     }
