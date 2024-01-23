@@ -42,6 +42,11 @@ export const Aside = styled('aside', {
     border: '4px solid $neutral100',
   },
 
+
+  '@sm': {
+    display: 'none',
+  },
+
   variants: {
     visible: {
       false: { ...hiddenState },
@@ -78,5 +83,5 @@ export const Container = styled('main', {
 
   '&:hover::-webkit-scrollbar-thumb':{
     visibility: "visible"
-  },
+  }
 })
