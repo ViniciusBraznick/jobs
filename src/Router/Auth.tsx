@@ -12,15 +12,11 @@ export function Auth({ isPrivate, userAllowed }: AuthProps) {
   const userType = user?.isCompany ? 'company' : 'candidate'
 
   if(!signedIn && isPrivate){
-    return <Navigate to="/login" replace/>
+    return <Navigate to="/login" />
   }
 
-  if(signedIn && !isPrivate){
-    return <Navigate to={`/${userType}/dashboard`} replace/>
-  }
-
-  if(userAllowed && userAllowed !== userType){
-    return <Navigate to={`/${userType}/dashboard`} replace/>
+  if(signedIn && !isPrivate || userAllowed && userAllowed !== userType){
+    return <Navigate to={`/${userType}/dashboard`} />
   }
 
   return <Outlet/>
