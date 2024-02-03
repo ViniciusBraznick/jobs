@@ -10,10 +10,17 @@ import { useAuth } from '../../../app/hooks/useAuth';
 import { SectionName } from './components/SectionName';
 import { FormGroup } from '../../components/FormGroup';
 import { SectionContainer } from './components/SectionContainer';
+import { useAccountDataController } from './useAccountDataController';
 
 export default function AccountData() {
   const navigate = useNavigate();
   const {user} = useAuth();
+
+  const {
+    register,
+    errors,
+    handleSubmit
+  } = useAccountDataController();
 
   return (
     <Container>
@@ -29,25 +36,25 @@ export default function AccountData() {
         <Card fullWidth>
           <form>
             <FormGroup>
-              <Input type="text" placeholder="Nome Completo" autoComplete="off" />
-              <Input type="text" placeholder="Cargo" />
+              <Input {...register('name')} error={errors.name?.message} type="text" placeholder="Nome Completo" autoComplete="off" />
+              <Input {...register('position')} error={errors.position?.message} type="text" placeholder="Cargo" />
             </FormGroup>
 
             <FormGroup>
               <Input disabled type="email" placeholder="E-mail" autoComplete="off" value={user?.email}/>
-              <Input type="text" placeholder="(00) 00000-0000" autoComplete="off"/>
+              <Input {...register('phone')} error={errors.phone?.message} type="text" placeholder="(00) 00000-0000" autoComplete="off"/>
             </FormGroup>
 
             <FormGroup>
-              <Input type="email" placeholder="Cidade" autoComplete="off" />
-              <Input type="text" placeholder="Estado" autoComplete="off" />
-              <Input type="text" placeholder="País" autoComplete="off" />
+              <Input {...register('city')} error={errors.city?.message} type="text" placeholder="Cidade" autoComplete="off" />
+              <Input {...register('estate')} error={errors.estate?.message} type="text" placeholder="Estado" autoComplete="off" />
+              <Input {...register('country')} error={errors.country?.message} type="text" placeholder="País" autoComplete="off" />
             </FormGroup>
           </form>
         </Card>
       </SectionContainer>
 
-      <Button css={{
+      <Button onClick={handleSubmit} type='submit' css={{
         marginTop: '24px',
         marginLeft: 'auto'
       }}>Salvar Alterações</Button>
