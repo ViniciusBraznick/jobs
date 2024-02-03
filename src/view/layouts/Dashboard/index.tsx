@@ -9,12 +9,13 @@ const Container = styled('main', {
 
 const Content = styled('section', {
   flex: 1,
+  width: '100%',
   marginLeft: 32,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  maxWidth: 1440 ,
-  margin: '0 auto'
+  maxWidth: 1040 ,
+  margin: '0 auto',
 });
 
 const Wrapper = styled('div', {

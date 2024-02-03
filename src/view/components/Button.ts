@@ -10,6 +10,7 @@ const outlineVariants = {
   backgroundColor: 'transparent',
   color: '$blue500',
   borderColor: '$blue500',
+
   '&:hover': {
     backgroundColor: '$blue500',
     color: '$neutral50',
@@ -30,12 +31,18 @@ const dangerVariants = {
   }
 }
 
+const invisibleVariable = {
+  backgroundColor: 'transparent',
+  color: '$neutral400',
+  padding: '0',
+}
+
 export const Button = styled('button', {
   width: 'fit-content',
   height: 48,
   borderRadius: '$borderRadius$1',
   border: '1px solid transparent',
-  padding: '0 $spacing$5',
+  padding: '0 $spacing$4',
   fontWeight: 600,
   fontSize: '$fontSize$base',
   letterSpacing: 1,
@@ -49,11 +56,7 @@ export const Button = styled('button', {
   gap: 8,
 
   '&:hover': {
-    backgroundColor: '$blue400',
-  },
-
-  '&:active': {
-    backgroundColor: '$blue600',
+    opacity: 0.9,
   },
 
   '&:disabled': {
@@ -62,9 +65,6 @@ export const Button = styled('button', {
     cursor: 'not-allowed',
   },
 
-  'svg': {
-    animation: `${spin} 2s ease-in-out infinite`,
-  },
 
   variants: {
     fullWidth: {
@@ -80,6 +80,16 @@ export const Button = styled('button', {
     },
     loading: {
       true: {...loadingVariants}
+    },
+    invisible: {
+      true: {...invisibleVariable}
+    },
+    animate: {
+      true: {
+        'svg': {
+          animation: `${spin} 2s ease-in-out infinite`,
+        },
+      }
     }
   }
 })

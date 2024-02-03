@@ -40,7 +40,7 @@ export function Router() {
             <Route path='/company/dashboard' element={<Dashboard />}/>
             <Route path='/company/curriculum' element={<Dashboard />}/>
             <Route path='/company/security' element={<Dashboard />}/>
-            <Route path='/company/data' element={<Dashboard />}/>
+            <Route path='/company/data' element={<AccountData />}/>
             <Route path='/company/privacy' element={<Dashboard />}/>
             <Route path='/company/applications' element={<Dashboard />}/>
             <Route path='/company/preferences' element={<Dashboard />}/>

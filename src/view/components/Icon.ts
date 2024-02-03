@@ -13,5 +13,13 @@ export const Icon = styled('span', {
   '&:hover': {
     backgroundColor: '$neutral150',
     color: '$neutral950',
+  },
+
+  variants: {
+    roundly: {
+      true: {
+        borderRadius: '$borderRadius$100',
+      }
+    }
   }
 });

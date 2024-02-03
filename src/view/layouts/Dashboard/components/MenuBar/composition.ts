@@ -18,7 +18,7 @@ const Portal = styled(Menubar.Portal, {
 })
 
 const Content = styled(Menubar.Content, {
-  width: '200px',
+  minWidth: '200px',
   border: '1px solid $neutral150',
   borderRadius: '$borderRadius$1',
   backgroundColor: '#FFF',

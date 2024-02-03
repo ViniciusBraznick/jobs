@@ -16,7 +16,7 @@ export default function Header() {
     </Actions>
 
     <Actions>
-      <Icon>
+      <Icon roundly>
         <BellIcon />
       </Icon>
       <Menu />
