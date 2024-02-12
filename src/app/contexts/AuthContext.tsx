@@ -1,6 +1,6 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { localStorageKeys } from "../config/localStorageKeys";
-import { usersService } from "../services/usersService";
+import { usersService } from "../services/candidateService";
 import { useQuery } from "@tanstack/react-query";
 import { LauchScreen } from "../../view/components/LauchScreen/LauchScreen";
 import { User } from "../entities/User";
