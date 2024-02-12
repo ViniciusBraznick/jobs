@@ -1,8 +1,8 @@
-import * as AvatarPrimitive from '@radix-ui/react-avatar';
+import * as RadixAvatarPrimitive from '@radix-ui/react-avatar';
 
 import { styled } from "../../styles/stitches.config";
 
-export const Root = styled(AvatarPrimitive.Root, {
+export const Root = styled(RadixAvatarPrimitive.Root, {
   width: '$spacing$10',
   height: '$spacing$10',
   display: 'inline-flex',
@@ -14,14 +14,14 @@ export const Root = styled(AvatarPrimitive.Root, {
   borderRadius: '$borderRadius$100',
 });
 
-export const Image = styled(AvatarPrimitive.Image, {
+export const Image = styled(RadixAvatarPrimitive.Image, {
   width: '100%',
   height: '100%',
   objectFit: 'cover',
   borderRadius: 'inherit',
 });
 
-export const Fallback = styled(AvatarPrimitive.Fallback, {
+export const Fallback = styled(RadixAvatarPrimitive.Fallback, {
   width: '100%',
   height: '100%',
   display: 'flex',

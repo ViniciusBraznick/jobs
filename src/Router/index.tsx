@@ -7,6 +7,7 @@ import { Dashboard } from '../view/pages/Dashboard';
 import { AuthLayout } from '../view/layouts/Auth';
 import { DashboardLayout } from '../view/layouts/Dashboard';
 import AccountData from '../view/pages/AccountData';
+import ConfigAccountData from '../view/pages/ConfigAccount';
 
 
 export function Router() {
@@ -31,6 +32,7 @@ export function Router() {
             <Route path='/candidate/curriculum' element={<Dashboard />}/>
             <Route path='/candidate/security' element={<Dashboard />}/>
             <Route path='/candidate/data' element={<AccountData />}/>
+            <Route path='/data' element={<ConfigAccountData />}/>
             <Route path='/candidate/privacy' element={<Dashboard />}/>
             <Route path='/candidate/applications' element={<Dashboard />}/>
             <Route path='/candidate/preferences' element={<Dashboard />}/>

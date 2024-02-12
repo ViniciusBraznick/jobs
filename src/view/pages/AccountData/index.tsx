@@ -14,12 +14,13 @@ import { useAccountDataController } from './useAccountDataController';
 
 export default function AccountData() {
   const navigate = useNavigate();
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   const {
     register,
     errors,
-    handleSubmit
+    handleSubmit,
+    isLoading
   } = useAccountDataController();
 
   return (
@@ -42,22 +43,24 @@ export default function AccountData() {
 
             <FormGroup>
               <Input disabled type="email" placeholder="E-mail" autoComplete="off" value={user?.email}/>
-              <Input {...register('phone')} error={errors.phone?.message} type="text" placeholder="(00) 00000-0000" autoComplete="off"/>
+              <Input {...register('telephone')} error={errors.telephone?.message} type="tel" placeholder="(00) 00000-0000" maxLength={15} autoComplete="on"/>
             </FormGroup>
 
             <FormGroup>
               <Input {...register('city')} error={errors.city?.message} type="text" placeholder="Cidade" autoComplete="off" />
-              <Input {...register('estate')} error={errors.estate?.message} type="text" placeholder="Estado" autoComplete="off" />
+              <Input {...register('stateProvince')} error={errors.stateProvince?.message} type="text" placeholder="Estado" maxLength={2} autoComplete="off" />
               <Input {...register('country')} error={errors.country?.message} type="text" placeholder="País" autoComplete="off" />
             </FormGroup>
           </form>
         </Card>
       </SectionContainer>
 
-      <Button onClick={handleSubmit} type='submit' css={{
+      <Button loading={isLoading} onClick={handleSubmit} type='submit' css={{
         marginTop: '24px',
         marginLeft: 'auto'
-      }}>Salvar Alterações</Button>
+      }}>
+        Salvar Alterações
+      </Button>
     </Container>
   )
 }

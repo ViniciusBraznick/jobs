@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { usersService } from "../../../app/services/usersService";
+import { usersService } from "../../../../app/services/usersService";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 
@@ -29,8 +29,9 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
-export function useAccountDataController() {
+export function useCandidateFormController() {
   const {
+    reset,
     register,
     handleSubmit: hookFormHandleSubmit,
     formState: { errors },
@@ -48,8 +49,7 @@ export function useAccountDataController() {
       }
   });
 
-
-  const { mutate, isLoading } = useMutation({
+  const { mutateAsync, isLoading } = useMutation({
     mutationFn: async (data: Candidate) => {
       return usersService.updateUserData(data)
     },
@@ -58,16 +58,16 @@ export function useAccountDataController() {
 
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     try {
-      await mutate(data);
-
-      toast.success("Conta atualizada", {
-        id: 'account_update'
-      })
-
+      toast.promise(mutateAsync(data), {
+        loading: 'Atualizando informações',
+        success: 'Conta atualizada',
+        error: 'Ocorreu um erro ao tentar atualizar seus dados'
+      });
     } catch {
-      toast.error("Usuário ou senha incorreto", {
-        id: 'login'
-      })
+      toast.error("Ocorreu um erro ao tentar atualizar seus dados", {
+        id: 'account_update',
+      });
+      reset();
     }
   });
 
@@ -99,6 +99,3 @@ export function useAccountDataController() {
 
   return { register, errors, handleSubmit, isLoading }
 }
-
-
-

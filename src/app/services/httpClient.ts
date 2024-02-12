@@ -14,4 +14,6 @@ httpClient.interceptors.request.use(config => {
   }
 
   return config;
-})
+});
+
+httpClient.defaults
