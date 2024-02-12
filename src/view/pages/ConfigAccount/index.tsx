@@ -4,11 +4,11 @@ import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import { Button } from "../../components/Button";
 import { H1 } from "../../components/h1";
 import { Section } from './components';
-import { Card } from '../../components/Card';
 import CandidateForm from './components/CandidateForm';
 import { Container } from "./styles";
 
 import { useAuth } from '../../../app/hooks/useAuth';
+import CompanyForm from './components/CompanyForm';
 
 export default function ConfigAccountData() {
   const navigate = useNavigate();
@@ -25,15 +25,11 @@ export default function ConfigAccountData() {
           {!user?.isCompany && (<p>Esses dados são usados por recrutadores para entrar em contato com você</p>)}
         </Section.Name>
 
-        <Card fullWidth>
+        <div>
           { !user?.isCompany && ( <CandidateForm /> )}
+          { user?.isCompany && ( <CompanyForm /> )}
+        </div>
 
-          { user?.isCompany && (
-            <div>
-              é empresa
-            </div>
-          )}
-        </Card>
       </Section.Container>
     </Container>
   )

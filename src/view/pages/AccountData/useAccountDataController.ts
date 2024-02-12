@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { usersService } from "../../../app/services/usersService";
+import { usersService } from "../../../app/services/candidateService";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 

@@ -2,18 +2,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { usersService } from "../../../../app/services/candidateService";
 import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
+import { companyService } from "../../../../app/services/companyService";
 import { formatters } from "../../../../app/utils/formatters";
 
-interface Candidate {
+interface Company {
+  name: string;
+  telephone: string;
+  cnpj: string;
+  description: string;
   city: string;
   country: string;
-  name: string;
   position: string;
   stateProvince: string;
-  telephone: string;
 }
 
 const schema = z.object({
@@ -21,8 +23,10 @@ const schema = z.object({
   position: z.string().trim().min(1, 'Cargo é obrigatório'),
   telephone: z.string()
           .trim()
-          .max(15, 'Número inválido')
-          .transform((phone) => phone.replace(/[^a-zA-Z0-9]/g, "")),
+          .max(16, 'Número inválido')
+          .transform((phone) => formatters.deserialize(phone)),
+  cnpj: z.string().trim().min(1, 'CNPJ inválido').max(18, 'CNPJ inválido').transform((cnpj) => formatters.deserialize(cnpj)),
+  description: z.string().max(100, 'Texto muito grande'),
   city: z.string().trim().min(1, 'Cidade é obrigatório'),
   stateProvince: z.string().trim().min(2, 'Estado é obrigatório').max(2, 'Deve conter apenas dois digitos').toUpperCase(),
   country: z.string().trim().min(1, 'País é obrigatório'),
@@ -30,7 +34,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
-export function useCandidateFormController() {
+export function useCompanyFormController() {
   const {
     reset,
     register,
@@ -42,20 +46,20 @@ export function useCandidateFormController() {
       resolver: zodResolver(schema),
       defaultValues: {
         name: '',
-        position: '',
         telephone: '',
+        cnpj: '',
         city: '',
+        description: '',
         stateProvince: '',
-        country: 'Brasil',
+        country: '',
       }
   });
 
   const { mutateAsync, isLoading } = useMutation({
-    mutationFn: async (data: Candidate) => {
-      return usersService.updateUserData(data)
+    mutationFn: async (data: Company) => {
+      return companyService.updateCompanyData(data)
     },
   });
-
 
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     try {
@@ -72,11 +76,17 @@ export function useCandidateFormController() {
     }
   });
 
-  const telephone = watch('telephone');
+  const CNPJ = watch('cnpj');
+  const phone = watch('telephone');
 
   useEffect(() => {
-    setValue('telephone', formatters.formatPhone(telephone))
-  }, [telephone, setValue]);
+    setValue('cnpj', formatters.formatCNPJ(CNPJ));
+  }, [CNPJ, setValue]);
+
+
+  useEffect(() => {
+    setValue('telephone', formatters.formatPhone(phone));
+  }, [phone, setValue]);
 
 
   useEffect(() => {
@@ -84,17 +94,18 @@ export function useCandidateFormController() {
       const { city,
               country,
               name,
-              position,
+              cnpj,
+              description,
               stateProvince,
-              telephone } = await usersService.getCandidateData();
+              telephone } = await companyService.getCompanyData();
 
       setValue('name', name || '')
-      setValue('position', position || '')
+      setValue('cnpj', cnpj || '')
       setValue('telephone', telephone || '')
       setValue('city', city || '')
       setValue('stateProvince', stateProvince || '')
       setValue('country', country || '')
-
+      setValue('description', description || '')
     })()
   }, [setValue])
 
