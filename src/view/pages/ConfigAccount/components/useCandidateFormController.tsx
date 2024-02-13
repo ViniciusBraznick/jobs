@@ -20,9 +20,10 @@ const schema = z.object({
   name: z.string().trim().min(1, 'Nome é obrigatório'),
   position: z.string().trim().min(1, 'Cargo é obrigatório'),
   telephone: z.string()
-          .trim()
-          .max(15, 'Número inválido')
-          .transform((phone) => phone.replace(/[^a-zA-Z0-9]/g, "")),
+  .trim()
+  .min(15, 'Número inválido')
+  .max(15, 'Número inválido')
+  .transform((phone) => formatters.deserialize(phone)),
   city: z.string().trim().min(1, 'Cidade é obrigatório'),
   stateProvince: z.string().trim().min(2, 'Estado é obrigatório').max(2, 'Deve conter apenas dois digitos').toUpperCase(),
   country: z.string().trim().min(1, 'País é obrigatório'),

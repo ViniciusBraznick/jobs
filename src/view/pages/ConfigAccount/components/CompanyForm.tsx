@@ -25,7 +25,7 @@ export default function CompanyForm() {
 
           <FormGroup>
             <Input disabled type="email" placeholder="E-mail" autoComplete="off" value={user?.email}/>
-            <Input {...register('telephone')} error={errors.telephone?.message} type="tel" placeholder="Telefone" maxLength={16} autoComplete="on"/>
+            <Input {...register('telephone')} error={errors.telephone?.message} type="tel" placeholder="Telefone" maxLength={15} autoComplete="on"/>
           </FormGroup>
 
           <FormGroup>
