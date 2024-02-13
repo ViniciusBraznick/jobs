@@ -2,9 +2,9 @@ import { httpClient } from "../httpClient";
 
 interface Company {
   name: string;
-  telephone: string;
+  telephone?: string;
   cnpj: string;
-  description: string;
+  description?: string;
   city: string;
   country: string;
   stateProvince: string;

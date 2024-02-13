@@ -10,7 +10,7 @@ interface Prop {
 
 export function useSidebarController(){
   const { pathname } = useLocation();
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [idCategoryActive, setIdCategoryActive] = useState(0);
   const { user } = useAuth();
 

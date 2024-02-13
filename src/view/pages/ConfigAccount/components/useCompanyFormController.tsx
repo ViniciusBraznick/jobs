@@ -9,24 +9,22 @@ import { formatters } from "../../../../app/utils/formatters";
 
 interface Company {
   name: string;
-  telephone: string;
+  telephone?: string;
   cnpj: string;
-  description: string;
+  description?: string;
   city: string;
   country: string;
-  position: string;
   stateProvince: string;
 }
 
 const schema = z.object({
   name: z.string().trim().min(1, 'Nome é obrigatório'),
-  position: z.string().trim().min(1, 'Cargo é obrigatório'),
   telephone: z.string()
           .trim()
           .max(16, 'Número inválido')
           .transform((phone) => formatters.deserialize(phone)),
   cnpj: z.string().trim().min(1, 'CNPJ inválido').max(18, 'CNPJ inválido').transform((cnpj) => formatters.deserialize(cnpj)),
-  description: z.string().max(100, 'Texto muito grande'),
+  description: z.string().trim().max(100, 'Texto muito grande'),
   city: z.string().trim().min(1, 'Cidade é obrigatório'),
   stateProvince: z.string().trim().min(2, 'Estado é obrigatório').max(2, 'Deve conter apenas dois digitos').toUpperCase(),
   country: z.string().trim().min(1, 'País é obrigatório'),
@@ -63,13 +61,13 @@ export function useCompanyFormController() {
 
   const handleSubmit = hookFormHandleSubmit(async (data) => {
     try {
-      toast.promise(mutateAsync(data), {
+      await toast.promise(mutateAsync(data), {
         loading: 'Atualizando informações',
         success: 'Conta atualizada',
         error: 'Ocorreu um erro ao tentar atualizar seus dados'
       });
-    } catch {
-      toast.error("Ocorreu um erro ao tentar atualizar seus dados", {
+    } catch (error) {
+      toast.error("Ocorreu um erro ao tentar atualizar os dados da sua conta", {
         id: 'account_update',
       });
       reset();

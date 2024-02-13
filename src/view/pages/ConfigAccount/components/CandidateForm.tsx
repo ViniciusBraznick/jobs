@@ -25,7 +25,7 @@ export default function CandidateForm() {
 
         <FormGroup>
           <Input disabled type="email" placeholder="E-mail" autoComplete="off" value={user?.email}/>
-          <Input {...register('telephone')} error={errors.telephone?.message} type="tel" placeholder="(00) 00000-0000" maxLength={15} autoComplete="on"/>
+          <Input {...register('telephone')} error={errors.telephone?.message} type="tel" placeholder="Telefone" maxLength={15} autoComplete="on"/>
         </FormGroup>
 
         <FormGroup>
@@ -35,7 +35,7 @@ export default function CandidateForm() {
         </FormGroup>
       </Card>
 
-      <Button loading={isLoading} onClick={handleSubmit} type='submit' css={{
+      <Button loading={isLoading} onClick={handleSubmit}  type='submit' css={{
         marginTop: '24px',
         marginLeft: 'auto'
       }}>
