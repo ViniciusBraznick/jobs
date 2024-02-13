@@ -3,6 +3,7 @@ import { Button } from "../../../components/Button";
 import { Card } from "../../../components/Card";
 import { FormGroup } from "../../../components/FormGroup";
 import { Input } from "../../../components/Input";
+import { TextArea } from "../../../components/TextArea";
 import { useCompanyFormController } from "./useCompanyFormController";
 
 export default function CompanyForm() {
@@ -35,7 +36,7 @@ export default function CompanyForm() {
           </FormGroup>
 
           <FormGroup>
-            <Input {...register('description')} error={errors.description?.message} type="text" placeholder="Descrição" autoComplete="off" />
+            <TextArea {...register('description')} error={errors.description?.message} placeholder="Descrição" autoComplete="off" />
           </FormGroup>
       </Card>
 
